@@ -1,0 +1,33 @@
+<style>
+    h1{
+      font-family:'Georgia', 'cursive';
+    }
+    body{ 
+      background: rgb(130, 196, 240);
+      width: 100%;
+      height: 100vh;
+      position: fixed;
+    }
+    .jumbotron {
+      width: 100%;
+      height: 100vh;
+      color: rgb(10, 9, 9);
+      padding: 100px 50px;
+      font-family: 'Montserrat', 'sans-serif';
+      max-width: 100%;}
+</style>
+
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;"> 🏡Home</h1>
+          <div class="d-flex">
+            <button [routerLink]= "['/login']" type="button" data-bs-toggle="modal" 
+               class="btn btn-block btn-lg fw-bold text-center" style="color: aliceblue; font-family:'Georgia', 'cursive';">Login</button>
+          </div>
+    </div>
+</nav>
+<body>
+    <div class="jumbotron text-center">
+      <h1 class="display-3 fw-bold" >Welcome to Employee Services!!!</h1>
+    </div>
+</body>

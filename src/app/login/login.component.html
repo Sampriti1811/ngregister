@@ -1,0 +1,102 @@
+<style>
+  h1{
+    font-family:'Georgia', 'cursive';
+  }
+  h2{
+    font-family:'Georgia', 'cursive';
+  }
+  body{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    
+  }
+  .bg{
+    background: rgb(10, 79, 126);
+    width: 100%;
+    height: 100vh;
+    background-size: 100%;
+  }
+  .form-container{
+    position: absolute;
+    top: 15vh;
+    background: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #000;
+    
+  }
+</style>
+
+<nav class="navbar navbar-light bg-primary">
+  <div class="container-fluid">
+      <h1 style="color: aliceblue;">Employee Login Page</h1>
+      <div class="d-flex">
+        <button [routerLink]= "['/']" type="button" data-bs-toggle="modal" 
+          class="btn btn-block btn-lg fw-bold" style="color: aliceblue; font-family:'Georgia', 'cursive';">🏡Home</button>
+          
+      </div>
+  </div>
+</nav>
+
+<body >
+  <section class="container-fluid bg">
+    <section class="row justify-content-center">
+      <section class="col-12 col-sm-6 col-md-3">
+
+        <form class="form-container"> 
+          <div class="container">
+            <h2 class="text-center fw-bold">Employee Login</h2>
+        
+        
+          <form #loginform='ngForm' (ngSubmit)= "loginUser(loginform)">
+            <small class="text-danger">{{msg}}</small>
+
+            <div class="form-group"> <label class="control-label col-sm-1" for="name">Username:</label>
+         
+              <input type="name" class="form-control" id="name" placeholder="Enter your name here" name="name" 
+              [(ngModel)]= "user.name" required #name="ngModel"
+              [class.is-invalid]= "name.invalid && name.touched">
+
+            <small class="text-danger" [class.d-none]= "name.valid || name.untouched">Username is a required field</small>
+          </div>
+    
+
+          <div class="mb-3"> <label class="control-label col-sm-1" for="pwd">Password:</label>
+      
+              <input type="password" class="form-control" id="pwd" placeholder="Enter your password here" name="password" 
+              [(ngModel)]= "user.password" required #password="ngModel"
+              [class.is-invalid]= "password.invalid && password.touched">
+
+            <small class="text-danger" [class.d-none]= "password.valid || password.untouched">Password is a required field</small>
+          </div>
+    
+
+          <div class="mb-3">        
+            <div class="col-sm-offset-1">
+              <div class="checkbox font-monospace">
+                <label><input type="checkbox" name="remember"> Remember me</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">        
+            <div class="d-grid gap-2">
+              <button [disabled]= "loginform.form.invalid" type="submit" class="btn btn-primary btn-block">Login</button>
+            </div>
+          </div>
+  </form>
+
+          <div class="form-group">        
+            <div class="col-sm-offset-1 text-center">
+              <small class="float-right btextual fw-bold link-primary" [routerLink]= "['/registration']"><u>New User ? Register Here</u></small>
+            </div>
+          </div>
+        </div>
+</form>
+
+      </section>
+    </section>
+  </section>
+
+</body>

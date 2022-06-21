@@ -1,0 +1,29 @@
+{
+  "posts": [
+    {
+      "id": 2,
+      "name": "Alex",
+      "email": "rob@gmail.com",
+      "contact": "8713871219",
+      "address": "Austria"
+    },
+    {
+      "id": 3,
+      "name": "Test",
+      "email": "test@gmail.com",
+      "contact": "8378348236",
+      "address": "UK"
+    },
+    {
+      "id": 4,
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "contact": "823872387",
+      "address": "Asia"
+    }
+  ],
+  "comments": [],
+  "profile": {
+    "name": "typicode"
+  }
+}
