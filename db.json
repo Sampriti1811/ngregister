@@ -13,13 +13,6 @@
       "email": "test@gmail.com",
       "contact": "8378348236",
       "address": "UK"
-    },
-    {
-      "id": 4,
-      "name": "abc",
-      "email": "abc@gmail.com",
-      "contact": "823872387",
-      "address": "Asia"
     }
   ],
   "comments": [],

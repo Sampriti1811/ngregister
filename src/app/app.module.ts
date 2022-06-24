@@ -1,5 +1,5 @@
 import { HttpClient, HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, Type } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgStyle } from '@angular/common';
@@ -13,7 +13,7 @@ import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth.service';
 import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
 import { HomeComponent } from './home/home.component';
-
+import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 @NgModule({
   declarations: [

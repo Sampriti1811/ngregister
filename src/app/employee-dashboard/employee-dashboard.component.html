@@ -15,7 +15,6 @@
     <thead>
         <tr>
             <th scope="col">Employee ID</th>
-            <th scope="col">Name</th>
             <th scope="col">Email ID</th>
             <th scope="col">Contact Number</th>
             <th scope="col">Address</th>
@@ -30,8 +29,8 @@
             <td>{{row.contact}}</td>
             <td>{{row.address}}</td>
             <td>
-                <button (click)= "onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-info">Edit</button>
-                <button (click)= "deleteEmployee(row)" class="btn btn-danger mx-3">Delete</button>
+                <button (click)= "onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">Edit</button>
+                <button (click)= "deleteEmployee(row)" class="btn btn-outline-danger mx-3">Delete</button>
             </td>
         </tr>
     </tbody>
@@ -46,7 +45,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form [formGroup]= "formValue">
+            <form [formGroup]= "empDetail">
                 <div class="mb-3">
                   <label for="InputName">Name</label>
                   <input type="text" formControlName="name" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="Enter name here">
@@ -69,7 +68,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" *ngIf= "showAdd" (click)= "postEmployeeDetails()" class="btn btn-primary">Add</button>
+          <button type="button" *ngIf= "showAdd" (click)= "clickAddEmployee()" class="btn btn-primary">Add</button>
           <button type="button" *ngIf= "showUpdate" (click)= "updateEmployeeDetails()" class="btn btn-primary">Update</button>
         </div>
       </div>
