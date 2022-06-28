@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms'
 import { Router } from '@angular/router';
+import { Employee } from '../model/employee';
 import { ApiService } from '../shared/api.service';
-import { EmployeeModel } from './employee-dashboard.model';
+
 
 @Component({
   selector: 'app-employee-dashboard',
@@ -12,11 +13,12 @@ import { EmployeeModel } from './employee-dashboard.model';
 export class EmployeeDashboardComponent implements OnInit {
 
   empDetail !: FormGroup;
-  empList : EmployeeModel[] = [];
-  empObj : EmployeeModel = new EmployeeModel(); 
-  employeeData !: any;
+  empObj : Employee = new Employee();
+  empList : Employee[] = [];
+   
+  /*employeeData !: any;
   showAdd !:boolean;
-  showUpdate !:boolean;
+  showUpdate !:boolean;*/
 
   constructor( 
     private formbuilder:FormBuilder,
@@ -25,26 +27,29 @@ export class EmployeeDashboardComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.getAllEmployee();
+
     this.empDetail= this.formbuilder.group({
+      id : [''],
       email : [''],
       contact : [''],
       address : ['']
-    });
-    this.getAllEmployee();
+    });   
     
   }
-  home(){
+  /*home(){
     this.router.navigate(['/'])
 
-  }
+  }*/
 
-  clickAddEmployee(){
+  addEmployee(){
 
-    this.empDetail.reset();
+    /*this.empDetail.reset();
     this.showAdd = true;
-    this.showUpdate = false;
-
+    this.showUpdate = false;*/
     console.log(this.empDetail);
+    
+    this.empObj.id = this.empDetail.value.id;
     this.empObj.email = this.empDetail.value.email;
     this.empObj.contact = this.empDetail.value.contact;
     this.empObj.address = this.empDetail.value.address;
@@ -82,47 +87,50 @@ export class EmployeeDashboardComponent implements OnInit {
   }*/
 
   getAllEmployee(){
-    this.api.getEmployee().subscribe(res=>{
+    this.api.getAllEmployee().subscribe(res=>{
       this.empList = res;
-    },err=>{
+    },
+    err=>{
       console.log("error while fetching data.")
     });
   }
 
-  deleteEmployee(emp: EmployeeModel){
-
-    this.api.deleteEmployee(emp).subscribe(res=>{
-      console.log(res);
-      alert("Employee Deleted")
-      this.getAllEmployee();
-    },err => {
-      console.log(err);
-  });
-  }
-
-  onEdit(emp: EmployeeModel){
-    this.showAdd = false;
-    this.showUpdate = true;
-    this.empObj.id = emp.id;
-    
+  editEmployee(emp : Employee) {
+    this.empDetail.controls['id'].setValue(emp.id);
     this.empDetail.controls['email'].setValue(emp.email);
     this.empDetail.controls['contact'].setValue(emp.contact);
     this.empDetail.controls['address'].setValue(emp.address);
+
   }
 
-  updateEmployeeDetails(){
-    this.empObj.name = this.empDetail.value.name;
+  updateEmployee() {
+
+    this.empObj.id = this.empDetail.value.id;
     this.empObj.email = this.empDetail.value.email;
     this.empObj.contact = this.empDetail.value.contact;
     this.empObj.address = this.empDetail.value.address;
 
     this.api.updateEmployee(this.empObj).subscribe(res=>{
-      alert("Updated Successfully");
-      let ref = document.getElementById('cancel')
-      ref?.click();
-      this.empDetail.reset();
+      console.log(res);
       this.getAllEmployee();
+    },err=>{
+      console.log(err);
     })
+
   }
+
+  deleteEmployee(emp : Employee) {
+
+    this.api.deleteEmployee(emp).subscribe(res=>{
+      console.log(res);
+      alert('Employee deleted successfully');
+      this.getAllEmployee();
+    },err => {
+      console.log(err);
+    });
+
+  }
+
+ 
 
 }

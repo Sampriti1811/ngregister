@@ -1,17 +1,20 @@
-<nav class="navbar navbar-light bg-primary">
+<div class="container-fluid">
+  <nav class="navbar navbar-light bg-primary">
     <div class="container-fluid">
         <h1 style="color: aliceblue; font-family:'Georgia', 'cursive';">Employee List</h1>
+
         <div class="d-flex">
             <button [routerLink]= "['/']" type="button" data-bs-toggle="modal" 
               class="btn btn-block btn-lg fw-bold" style="color: aliceblue; font-family:'Georgia', 'cursive';">Log Out</button>
 
-            <button (click)= "clickAddEmployee()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" 
+            <button (click)= "addEmployee()" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" 
               class="btn btn-block btn-lg" style="color: aliceblue; font-family:'Georgia', 'cursive';">Add Employee</button>
         </div>
-    </div>
+        </div>
+    
 </nav>
 
-<table class="table mt-3">
+<table class="table table-hover mt-3">
     <thead>
         <tr>
             <th scope="col">Employee ID</th>
@@ -22,55 +25,105 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor= "let row of employeeData">
-            <td>{{row.id}}</td>
-            <td>{{row.name}}</td>
-            <td>{{row.email}}</td>
-            <td>{{row.contact}}</td>
-            <td>{{row.address}}</td>
+        
+          <tr *ngFor= "let employee of empList">
+            <!--<th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>-->
+          
+            <td>{{employee.id}}</td>
+            <td>{{employee.email}}</td>
+            <td>{{employee.contact}}</td>
+            <td>{{employee.address}}</td>
+          </tr>  
             <td>
-                <button (click)= "onEdit(row)" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-outline-primary">Edit</button>
-                <button (click)= "deleteEmployee(row)" class="btn btn-outline-danger mx-3">Delete</button>
+                <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target= "#editEmployee" >Edit</button>
+                <button type="button" class="btn btn-outline-danger" >Delete</button>
             </td>
-        </tr>
+        
     </tbody>
 </table>
+
+<!-- (click)= "deleteEmployee()" 
+ data-bs-toggle="modal" data-bs-target="#exampleModal" -->
   
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+  <!-- Add employee modal -->
+  <div class="modal fade" id= "addEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Employee Details</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Add new Employee</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+
             <form [formGroup]= "empDetail">
-                <div class="mb-3">
+                <!--<div class="mb-3">
                   <label for="InputName">Name</label>
                   <input type="text" formControlName="name" class="form-control" id="InputName" aria-describedby="emailHelp" placeholder="Enter name here">
                   
-                </div>
+                </div>-->
                 <div class="mb-3">
-                  <label for="InputEmail">Email ID</label>
+                  <label for="InputEmail" class="form-label">Email ID</label>
                   <input type="email" formControlName="email" class="form-control" id="InputEmail" placeholder="Enter your email id here">
                 </div>
                 <div class="mb-3">
-                  <label for="InputContact">Contact Number</label>
+                  <label for="InputContact" class="form-label">Contact Number</label>
                   <input type="text" formControlName="contact" class="form-control" id="InputContact" placeholder="Enter your contact number here">
                 </div>
                 <div class="mb-3">
-                   <label for="InputAddress">Address</label>
+                   <label for="InputAddress" class="form-label">Address</label>
                    <input type="text" formControlName="address" class="form-control" id="InputAddress" placeholder="Enter your address here">
                 </div>
-                
+
+                <div class="modal-footer">
+                  <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" (click)= "addEmployee()"  data-bs-dismiss="modal"  class="btn btn-primary">Add</button>
+                  <!--<button type="button" *ngIf= "showUpdate" (click)= "updateEmployeeDetails()" class="btn btn-primary">Update</button>-->
+                </div>
+
               </form>
+
+            </div>         
+        
+        
+      </div>
+    </div>
+
+    <!-- Edit employee modal -->
+  <div class="modal fade" id="editEmployee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit employee details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-footer">
-          <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" *ngIf= "showAdd" (click)= "clickAddEmployee()" class="btn btn-primary">Add</button>
-          <button type="button" *ngIf= "showUpdate" (click)= "updateEmployeeDetails()" class="btn btn-primary">Update</button>
+        <div class="modal-body">
+
+            <form [formGroup]= "empDetail">
+                <div class="mb-3">
+                    <label for="exampleInputEmail" class="form-label">Email ID </label>
+                    <input type="email" formControlName="email" class="form-control" id="email" aria-describedby="emailHelp">
+                  </div>
+                <div class="mb-3">
+                  <label for="exampleInputContact" class="form-label">Contact</label>
+                  <input type="text" formControlName="contact" class="form-control" id="contact" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputAddress" class="form-label">Address</label>
+                    <input type="text" formControlName="address" class="form-control" id="address" aria-describedby="emailHelp">
+                  </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-outline-success" (click)= "updateEmployee()" data-bs-dismiss="modal">Update </button>
+                  </div>
+              </form>
+
         </div>
       </div>
     </div>
+  </div>
+
+  </div>
   </div>
