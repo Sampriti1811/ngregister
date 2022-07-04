@@ -11,9 +11,12 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginsuccessComponent } from './loginsuccess/loginsuccess.component';
 import { AuthComponent } from './auth/auth.component';
 import { AuthService } from './auth.service';
-import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashboard.component';
+import { EmployeesComponent } from './employees/employees.component';
 import { HomeComponent } from './home/home.component';
 import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
+import { NgbModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddempComponent } from './app/addemp/addemp.component';
+
 
 @NgModule({
   declarations: [
@@ -22,15 +25,17 @@ import { ConfirmationPopoverModule} from 'angular-confirmation-popover';
     RegistrationComponent,
     LoginsuccessComponent,
     AuthComponent,
-    EmployeeDashboardComponent,
-    HomeComponent
+    EmployeesComponent,
+    HomeComponent,
+    AddempComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     AuthService

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-primary">
+    <div class="container-fluid">
+        <h1 style="color: aliceblue;">Add Employee</h1>
+        <div class="d-flex">
+          <button [routerLink]= "['/']" type="button" data-bs-toggle="modal" 
+            class="btn btn-block btn-lg fw-bold" style="color: aliceblue; font-family:'Georgia', 'cursive';">🏡Home</button>
+            
+        </div>
+    </div>
+  </nav>
+<form #empsForm= "ngForm" (ngSubmit)= "getEmpData(empsForm.value)">
+    <input type="email" ngModel name="email" placeholder="Enter your Email ID">
+    <br><br>
+    <input type="text" ngModel name="contact" placeholder="Enter your Contact number">
+    <br><br>
+    <input type="text" ngModel name="address" placeholder="Enter your Address">
+    <br><br>
+    <button>Add Employee</button>
+
+</form>

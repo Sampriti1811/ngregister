@@ -4,44 +4,36 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Employee } from '../model/employee';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
-  addEmpURL : string;
-  getEmpURL : string;
-  //postEmpURL : string;
-  updateEmpUrl : string;
-  deleteEmpUrl : string;
-
-  constructor( private http: HttpClient) { 
-    this.addEmpURL = 'http://localhost:8070/user-service/emp/addEmployee';
-    this.getEmpURL = 'http://localhost:8070/user-service/emp/getAll';
-    //this.postEmpURL = 'http://localhost:4200/postEmployee';
-    this.updateEmpUrl = 'http://localhost:8070/user-service/emp/updateEmployee';
-    this.deleteEmpUrl = 'http://localhost:8070/user-service/emp/deleteEmployeeById';
-  }
-
-  addEmployee(emp : Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.addEmpURL,emp);
-  }
-
-  /*postEmployee(data: any){
-    return this.http.post<EmployeeModel>(this.addEmpURL,data);
-  }*/
   
+  url= "http://localhost:3000/employees";
+  //updateUrl !: string;
 
-  getAllEmployee(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(this.getEmpURL);
+  constructor( 
+    private http: HttpClient   
+    ) { 
+      //this.updateUrl = "http://localhost:3000/employees/";
   }
-
-  updateEmployee(emp: Employee): Observable <Employee>{
-    return this.http.put<Employee>(this.updateEmpUrl, emp);
+  users(){
+    return this.http.get(this.url);
   }
-
-  deleteEmployee(emp: Employee): Observable <Employee>{
-    return this.http.delete<Employee>(this.deleteEmpUrl+'/'+emp.id);
-   }
+  saveUsers(data:any){
+    return this.http.post(this.url,data)
   }
+  deleteEmployee (id:any){
+    //console.log(j);
+    return this.http.delete('http://localhost:3000/employees/'+id).pipe(map((res) =>
+    {
+      return res;
+    }));
 
+  }
+  updateEmployee(emp:Employee){
+    return this.http.put('http://localhost:3000/employees/{id}',emp);
+
+}
+} 

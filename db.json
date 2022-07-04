@@ -1,22 +1,40 @@
 {
-  "posts": [
+  "employees": [
     {
-      "id": 2,
-      "name": "Alex",
-      "email": "rob@gmail.com",
-      "contact": "8713871219",
-      "address": "Austria"
+      "email": "sam@gmail.com",
+      "contact": 734873846,
+      "address": "Europe",
+      "id": 1
+    },
+    {
+      "email": "sam@gmail.com",
+      "contact": 734873846,
+      "address": "India",
+      "id": 2
     },
     {
       "id": 3,
-      "name": "Test",
-      "email": "test@gmail.com",
-      "contact": "8378348236",
-      "address": "UK"
+      "email": "ram@gmail.com",
+      "contact": "8378348233",
+      "address": "USA"
+    },
+    {
+      "id": 4,
+      "email": "rahul@gmail.com",
+      "contact": "8378348289",
+      "address": "Austria"
+    },
+    {
+      "email": "sonia@gmail.com",
+      "contact": "4964984565",
+      "address": "Africa",
+      "id": 5
+    },
+    {
+      "email": "abhi@gmail.com",
+      "contact": "9256341785",
+      "address": "Bangalore",
+      "id": 6
     }
-  ],
-  "comments": [],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }
